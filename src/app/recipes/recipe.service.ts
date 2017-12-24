@@ -1,8 +1,9 @@
 import {Recipe} from './recipe.model';
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
+import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
-
+@Injectable()
 export class RecipeService {
 
         recipeSelected = new EventEmitter<Recipe>();
@@ -14,7 +15,7 @@ export class RecipeService {
                         'http://s3.amazonaws.com/finecooking.s3.tauntonclud.com/app/uploads/2017/04/18180350/051SIP112-grilled-mustard-rosemary-chicken-recipe-alt-main.jpg',
                         [
                                 new Ingredient('Meat', 1),
-                                new Ingredient('Fries', 30),                                
+                                new Ingredient('Fries', 30),
                         ]
                 ),
                 new Recipe(
@@ -23,12 +24,18 @@ export class RecipeService {
                         'http://s3.amazonaws.com/finecooking.s3.tauntonclud.com/app/uploads/2017/04/18180350/051SIP112-grilled-mustard-rosemary-chicken-recipe-alt-main.jpg',
                         [
                                 new Ingredient('Buns', 2),
-                                new Ingredient('Meat', 1),                                
+                                new Ingredient('Meat', 1),
                         ]
                 )
         ];
 
+        constructor(private slService: ShoppingListService) {}
+
         getRecipes() {
                 return this.recipes.slice(); // return a copy
+        }
+
+        addIngredientsToShoppingList(ingredients: Ingredient[]) {
+                this.slService.addIngredients(ingredients);
         }
 }
