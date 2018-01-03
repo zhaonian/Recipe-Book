@@ -14,3 +14,5 @@ export class AuthInterceptor implements HttpInterceptor {
                 return next.handle(copiedReq);
         }
 }
+
+// make a copy to handle before request
