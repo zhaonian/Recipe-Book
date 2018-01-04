@@ -1,9 +1,9 @@
 # Recipe Book
 
 Main packages used:
-* Angular CLI
+* angular CLI
 * rxjs
-* ngrx.js
+* ngrx (not completed)
 * ...
 
 I stopped playing with this project :no_mouth:
